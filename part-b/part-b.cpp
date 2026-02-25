@@ -21,6 +21,19 @@ void towerHanoi(int, string, string, string, int&);
  * An integer to signal to the OS the exit code.
 *******************************************************************************/
 
+void towerHanoi(int n, string fromRod, string toRod, string auxRod, int& numMoves)
+{
+    if (n == 1) {
+        cout << "Moving disk 1 from " << fromRod << " to " << toRod << endl;
+        numMoves++;
+        return;
+    }
+    towerHanoi(n - 1, fromRod, auxRod, toRod, numMoves);
+    cout << "Move disk " << n << " from " << fromRod << " to " << toRod << endl;
+    numMoves++;
+    towerHanoi(n - 1, auxRod, toRod, fromRod, numMoves);
+}
+
 int main() {
     // solve the first 5 cases of the Tower of Hanoi problem
     for (int i = 1, numMoves = 0; i <= 5; i++, numMoves = 0) {
